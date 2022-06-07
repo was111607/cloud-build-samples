@@ -13,10 +13,22 @@
 # limitations under the License.
 # [START cloudbuild_maven]
 steps:
+  # Copy Maven dependencies to volume mavenrepo
+  - name: gcr.io/cloud-builders/gsutil
+    volumes:
+      - name: 'mavenrepo'
+        path: '/root/.m2'
+    args: ['cp', '-r', 'gs://com-mvn-test', '/root/.m2']
   - name: maven:3-jdk-8
+    volumes:
+      - name: 'mavenrepo'
+        path: '/root/.m2'
     entrypoint: mvn
     args: ["test"]
   - name: maven:3-jdk-8
+    volumes:
+      - name: 'mavenrepo'
+        path: '/root/.m2'
     entrypoint: mvn
     args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/docker
