@@ -33,8 +33,5 @@ steps:
     args: ["package", "-Dmaven.test.skip=true"]
   - name: gcr.io/cloud-builders/gcloud
     args: ['app', 'deploy']
-#   - name: gcr.io/cloud-builders/gcloud
-#     args: ['app', 'services', 'set-traffic', '--splits=1']    
-#     gcloud app services set-traffic [MY_SERVICE] --splits [MY_VERSION]=1
-images: ["gcr.io/$PROJECT_ID/hellospring"]
+timeout: "1600s"
 # [END cloudbuild_maven]
