@@ -27,6 +27,11 @@ public class DogsController {
     @Autowired
     private DogsRepository dogsRepository;
 
+    @GetMapping("/")
+    public String getWelcome() {
+      return "Dogs API is up and running!";
+    }
+
     @GetMapping("/dogs")
     public List < Dogs > getAllDogs() {
         return dogsRepository.findAll();
